@@ -1,0 +1,80 @@
+# Xcode
+DerivedData/
+*.xcworkspace
+*.xccheckout
+*.xcscmblueprint
+
+# Swift Package Manager
+/.build/
+Packages/
+.swiftpm/
+Package.resolved
+
+# Xcode specific files
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+!*.xcodeproj/xcshareddata/
+!*.xcodeproj/xcshareddata/*
+!*.xcodeproj/xcuserdata
+*.xcuserstate
+
+# Playgrounds
+timeline.xctimeline
+playground.xcworkspace
+
+# SwiftUI Previews
+.swiftpm/xcode/package.xcworkspace/xcuserdata
+
+# Build generated files
+*.o
+*.a
+*.dSYM
+*.ipa
+*.app
+
+# Logs and temporary files
+*.log
+*.tmp
+*.swp
+*.lock
+
+# Other
+.DS_Store
+*.moved-aside
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+xcuserdata/
+*.xcuserdatad
+*.xcuserstate
+
+# Cocoapods
+Pods/
+Podfile.lock
+
+# Carthage
+Carthage/Build/
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+fastlane/readme.md
+
+# Firebase
+GoogleService-Info.plist
+GoogleService-Info-*.plist
+
+# SwiftLint
+.swiftlint.yml
+
+# Environment Variables
+.env
+
+# Bundler
+.bundle/
+
+# SPM Packages
+/.swiftpm/xcode/
