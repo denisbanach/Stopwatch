@@ -13,36 +13,61 @@ struct ContentView: View {
     @State private var elapsedSeconds:Int = 0
     @State private var timerIsRunning:Bool = false
     
+    @State private var seconds:Int = 0
+    @State private var minutes:Int = 0
+    @State private var hours:Int = 0
+    
+    
+    
     var body: some View {
+        
+        var seconds: Int {
+                elapsedSeconds % 60
+            }
+            var minutes: Int {
+                (elapsedSeconds / 60) % 60
+            }
+            var hours: Int {
+                elapsedSeconds / 3600
+            }
         
         VStack {
             
-            Text("\(elapsedSeconds)")
+//           Text("\(elapsedSeconds)")
+//                .fontWeight(.bold)
+//                .fontDesign(.monospaced)
+//                .font(.custom("Arial",size: 40))
+            
+            Text(String(format: "%02d:%02d:%02d", hours, minutes, seconds))
                 .fontWeight(.bold)
                 .fontDesign(.monospaced)
                 .font(.custom("Arial",size: 40))
             
             
-            Button {
-                startAndStopTimer()
-            } label: {
-                HStack{
-                    Text(getStartButtonText())
-                        .foregroundColor(.white)
-                }.background(Color.accentColor)
-                
-            }
-            .padding(5)
+            
             
             Button(action: startAndStopTimer) {
-              Label(getStartButtonText(), systemImage: "play.circle")
+              Label(
+                timerIsRunning ? "Stop" : "Start",
+                systemImage: timerIsRunning ? "stop.circle" : "play.circle"
+              )
                 .padding(12)
                 .foregroundColor(.black)
                 .background(.yellow,
                    in: RoundedRectangle(cornerRadius: 12))
             }
-
             
+            if(!timerIsRunning && elapsedSeconds > 0) {
+                Button(action: stopTimerAndReset) {
+                  Text(
+                    "Reset"
+                  )
+                    .padding(12)
+                    .foregroundColor(.black)
+                    .background(.yellow,
+                       in: RoundedRectangle(cornerRadius: 12))
+                }
+            }
         }
         .padding()
     }
@@ -66,6 +91,11 @@ struct ContentView: View {
     private func stopTimer() {
         timer?.invalidate()
         timer = nil
+    }
+    
+    private func stopTimerAndReset() {
+        stopTimer()
+        elapsedSeconds = 0
     }
     
     private func getStartButtonText() -> String {
