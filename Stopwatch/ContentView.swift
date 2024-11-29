@@ -24,22 +24,37 @@ struct ContentView: View {
             
             
             Button {
-                if(timerIsRunning == false) {
-                    startTimer()
-                    timerIsRunning = true
-                }else{
-                    stopTimer()
-                    timerIsRunning = false
-                }
+                startAndStopTimer()
             } label: {
-                Text(getStartButtonText())
+                HStack{
+                    Text(getStartButtonText())
+                        .foregroundColor(.white)
+                }.background(Color.accentColor)
+                
+            }
+            .padding(5)
+            
+            Button(action: startAndStopTimer) {
+              Label(getStartButtonText(), systemImage: "play.circle")
+                .padding(12)
+                .foregroundColor(.black)
+                .background(.yellow,
+                   in: RoundedRectangle(cornerRadius: 12))
             }
 
             
-            }
-        
-        
+        }
         .padding()
+    }
+    
+    private func startAndStopTimer() {
+        if(timerIsRunning == false) {
+            startTimer()
+            timerIsRunning = true
+        }else{
+            stopTimer()
+            timerIsRunning = false
+        }
     }
     
     private func startTimer() {
